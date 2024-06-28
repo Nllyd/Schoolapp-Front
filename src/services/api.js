@@ -24,3 +24,7 @@ export const createCourse = (courseData) => {
 export const getCourses = () => {
   return api.get('/cursos').then(response => response.data);
 };
+
+export const getTeachersByCourse = (cursoId) => {
+  return api.get(`/cursos/${cursoId}/teachers`).then(response => response.data);
+};

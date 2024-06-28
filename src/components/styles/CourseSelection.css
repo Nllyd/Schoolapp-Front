@@ -61,6 +61,10 @@
   cursor: pointer;
 }
 
+.sidebar p {
+  cursor: pointer;
+}
+
 .sidebar button {
   margin-top: 20px;
   padding: 10px 20px;
@@ -94,6 +98,11 @@
   text-align: center;
 }
 
+.course-card:hover {
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
 .course-image {
   width: 100%;
   height: 150px;
@@ -103,5 +112,50 @@
 .course-name {
   padding: 10px;
   font-size: 18px;
-  color: #4122D9;
+  color: #141313;
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f0f0f0;
+}
+
+.modal-content {
+  background-color: rgb(20, 61, 107);
+  padding: 20px;
+  border-radius: 5px;
+  width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+.teacher-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.teacher-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.teacher-name {
+  font-size: 1.2em;
+  color: #f0f0f0;
+}
+
+
