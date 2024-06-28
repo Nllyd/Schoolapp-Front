@@ -1,55 +1,41 @@
-// src/components/Login.js
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/api';
+import { useAuth } from '../context/AuthContext';
 import './styles/Login.css';
 
 function Login() {
-  const [formData, setFormData] = useState({
-    numero: '',
-    contrasena: '',
-  });
-
+  const [numero, setNumero] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser(formData)
-      .then((response) => {
-        alert('Inicio de sesión exitoso!');
+    const loginData = { numero, contrasena };
+    loginUser(loginData)
+      .then(response => {
+        login(response.data);
         navigate('/courses');
       })
-      .catch((error) => {
-        console.error('Hubo un error en el inicio de sesión!', error);
+      .catch(error => {
+        console.error('Error logging in:', error);
       });
   };
 
   return (
     <div className="login-container">
-      <h2>Inicio de Sesión</h2>
-      <form onSubmit={handleSubmit} className="login-form">
-        <input
-          type="number"
-          name="numero"
-          placeholder="Número"
-          value={formData.numero}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="contrasena"
-          placeholder="Contraseña"
-          value={formData.contrasena}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Iniciar Sesión</button>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Número:
+          <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} required />
+        </label>
+        <label>
+          Contraseña:
+          <input type="password" value={contrasena} onChange={(e) => setContrasena(e.target.value)} required />
+        </label>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
